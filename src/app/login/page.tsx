@@ -39,7 +39,7 @@ function VersionDisplay() {
           className={`flex items-center gap-1.5 ${updateStatus === UpdateStatus.HAS_UPDATE
             ? 'text-yellow-600 dark:text-yellow-400'
             : updateStatus === UpdateStatus.NO_UPDATE
-              ? 'text-blue-400 dark:text-blue-300'
+              ? 'text-green-600 dark:text-green-400'
               : ''
             }`}
         >
