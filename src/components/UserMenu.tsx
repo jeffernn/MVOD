@@ -410,7 +410,7 @@ export const UserMenu: React.FC = () => {
                     className={`w-2 h-2 rounded-full -translate-y-2 ${updateStatus === UpdateStatus.HAS_UPDATE
                       ? 'bg-yellow-500'
                       : updateStatus === UpdateStatus.NO_UPDATE
-                        ? 'bg-blue-300'
+                        ? 'bg-green-400'
                         : ''
                       }`}
                   ></div>
