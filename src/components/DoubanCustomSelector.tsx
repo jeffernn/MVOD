@@ -40,10 +40,16 @@ const DoubanCustomSelector: React.FC<DoubanCustomSelectorProps> = ({
     width: number;
   }>({ left: 0, width: 0 });
 
-  // 根据 customCategories 生成一级选择器选项（按 type 分组）
+  // 根据 customCategories 生成一级选择器选项（按 type 分组，电影优先）
   const primaryOptions = React.useMemo(() => {
     const types = Array.from(new Set(customCategories.map((cat) => cat.type)));
-    return types.map((type) => ({
+    // 确保电影类型排在前面
+    const sortedTypes = types.sort((a, b) => {
+      if (a === 'movie' && b !== 'movie') return -1;
+      if (a !== 'movie' && b === 'movie') return 1;
+      return 0;
+    });
+    return sortedTypes.map((type) => ({
       label: type === 'movie' ? '电影' : '剧集',
       value: type,
     }));
@@ -194,11 +200,10 @@ const DoubanCustomSelector: React.FC<DoubanCustomSelectorProps> = ({
                 buttonRefs.current[index] = el;
               }}
               onClick={() => onChange(option.value)}
-              className={`relative z-10 px-2 py-1 sm:px-4 sm:py-2 text-xs sm:text-sm font-medium rounded-full transition-all duration-200 whitespace-nowrap ${
-                isActive
+              className={`relative z-10 px-2 py-1 sm:px-4 sm:py-2 text-xs sm:text-sm font-medium rounded-full transition-all duration-200 whitespace-nowrap ${isActive
                   ? 'text-gray-900 dark:text-gray-100 cursor-default'
                   : 'text-gray-700 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100 cursor-pointer'
-              }`}
+                }`}
             >
               {option.label}
             </button>
