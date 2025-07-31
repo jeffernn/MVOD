@@ -1250,7 +1250,7 @@ function PlayPageClient() {
         playsInline: true,
         autoPlayback: false,
         airplay: true,
-        theme: '#22c55e',
+        theme: '#38bdf8',
         lang: 'zh-cn',
         hotkey: false,
         fastForward: true,
