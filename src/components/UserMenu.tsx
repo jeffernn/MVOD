@@ -329,13 +329,12 @@ export const UserMenu: React.FC = () => {
                 当前用户
               </span>
               <span
-                className={`inline-flex items-center px-1.5 py-0.5 rounded-full text-xs font-medium ${
-                  (authInfo?.role || 'user') === 'owner'
-                    ? 'bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-300'
-                    : (authInfo?.role || 'user') === 'admin'
+                className={`inline-flex items-center px-1.5 py-0.5 rounded-full text-xs font-medium ${(authInfo?.role || 'user') === 'owner'
+                  ? 'bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-300'
+                  : (authInfo?.role || 'user') === 'admin'
                     ? 'bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300'
-                    : 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300'
-                }`}
+                    : 'bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300'
+                  }`}
               >
                 {getRoleText(authInfo?.role || 'user')}
               </span>
@@ -401,29 +400,23 @@ export const UserMenu: React.FC = () => {
           <div className='my-1 border-t border-gray-200 dark:border-gray-700'></div>
 
           {/* 版本信息 */}
-          <button
-            onClick={() =>
-              window.open('https://github.com/LunaTechLab/MoonTV', '_blank')
-            }
-            className='w-full px-3 py-2 text-center flex items-center justify-center text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors text-xs'
-          >
+          <div className='w-full px-3 py-2 text-center flex items-center justify-center text-gray-500 dark:text-gray-400 text-xs'>
             <div className='flex items-center gap-1'>
               <span className='font-mono'>v{CURRENT_VERSION}</span>
               {!isChecking &&
                 updateStatus &&
                 updateStatus !== UpdateStatus.FETCH_FAILED && (
                   <div
-                    className={`w-2 h-2 rounded-full -translate-y-2 ${
-                      updateStatus === UpdateStatus.HAS_UPDATE
-                        ? 'bg-yellow-500'
-                        : updateStatus === UpdateStatus.NO_UPDATE
+                    className={`w-2 h-2 rounded-full -translate-y-2 ${updateStatus === UpdateStatus.HAS_UPDATE
+                      ? 'bg-yellow-500'
+                      : updateStatus === UpdateStatus.NO_UPDATE
                         ? 'bg-green-400'
                         : ''
-                    }`}
+                      }`}
                   ></div>
                 )}
             </div>
-          </button>
+          </div>
         </div>
       </div>
     </>
@@ -483,7 +476,7 @@ export const UserMenu: React.FC = () => {
                   checked={defaultAggregateSearch}
                   onChange={(e) => handleAggregateToggle(e.target.checked)}
                 />
-                <div className='w-11 h-6 bg-gray-300 rounded-full peer-checked:bg-green-500 transition-colors dark:bg-gray-600'></div>
+                <div className='w-11 h-6 bg-gray-300 rounded-full peer-checked:bg-blue-400 transition-colors dark:bg-gray-600'></div>
                 <div className='absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full transition-transform peer-checked:translate-x-5'></div>
               </div>
             </label>
@@ -507,7 +500,7 @@ export const UserMenu: React.FC = () => {
                   checked={enableOptimization}
                   onChange={(e) => handleOptimizationToggle(e.target.checked)}
                 />
-                <div className='w-11 h-6 bg-gray-300 rounded-full peer-checked:bg-green-500 transition-colors dark:bg-gray-600'></div>
+                <div className='w-11 h-6 bg-gray-300 rounded-full peer-checked:bg-blue-400 transition-colors dark:bg-gray-600'></div>
                 <div className='absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full transition-transform peer-checked:translate-x-5'></div>
               </div>
             </label>
@@ -534,7 +527,7 @@ export const UserMenu: React.FC = () => {
                   checked={enableDoubanProxy}
                   onChange={(e) => handleDoubanProxyToggle(e.target.checked)}
                 />
-                <div className='w-11 h-6 bg-gray-300 rounded-full peer-checked:bg-green-500 transition-colors dark:bg-gray-600'></div>
+                <div className='w-11 h-6 bg-gray-300 rounded-full peer-checked:bg-blue-400 transition-colors dark:bg-gray-600'></div>
                 <div className='absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full transition-transform peer-checked:translate-x-5'></div>
               </div>
             </label>
@@ -552,11 +545,10 @@ export const UserMenu: React.FC = () => {
             </div>
             <input
               type='text'
-              className={`w-full px-3 py-2 border rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors ${
-                enableDoubanProxy
-                  ? 'border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400'
-                  : 'border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/50 text-gray-400 dark:text-gray-500 placeholder-gray-400 dark:placeholder-gray-600 cursor-not-allowed'
-              }`}
+              className={`w-full px-3 py-2 border rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors ${enableDoubanProxy
+                ? 'border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400'
+                : 'border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/50 text-gray-400 dark:text-gray-500 placeholder-gray-400 dark:placeholder-gray-600 cursor-not-allowed'
+                }`}
               placeholder='例如: https://proxy.example.com/fetch?url='
               value={doubanProxyUrl}
               onChange={(e) => handleDoubanProxyUrlChange(e.target.value)}
@@ -585,7 +577,7 @@ export const UserMenu: React.FC = () => {
                   checked={enableImageProxy}
                   onChange={(e) => handleImageProxyToggle(e.target.checked)}
                 />
-                <div className='w-11 h-6 bg-gray-300 rounded-full peer-checked:bg-green-500 transition-colors dark:bg-gray-600'></div>
+                <div className='w-11 h-6 bg-gray-300 rounded-full peer-checked:bg-blue-400 transition-colors dark:bg-gray-600'></div>
                 <div className='absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full transition-transform peer-checked:translate-x-5'></div>
               </div>
             </label>
@@ -603,11 +595,10 @@ export const UserMenu: React.FC = () => {
             </div>
             <input
               type='text'
-              className={`w-full px-3 py-2 border rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors ${
-                enableImageProxy
-                  ? 'border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400'
-                  : 'border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/50 text-gray-400 dark:text-gray-500 placeholder-gray-400 dark:placeholder-gray-600 cursor-not-allowed'
-              }`}
+              className={`w-full px-3 py-2 border rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors ${enableImageProxy
+                ? 'border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400'
+                : 'border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/50 text-gray-400 dark:text-gray-500 placeholder-gray-400 dark:placeholder-gray-600 cursor-not-allowed'
+                }`}
               placeholder='例如: https://imageproxy.example.com/?url='
               value={imageProxyUrl}
               onChange={(e) => handleImageProxyUrlChange(e.target.value)}
@@ -660,7 +651,7 @@ export const UserMenu: React.FC = () => {
             </label>
             <input
               type='password'
-              className='w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-colors bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400'
+              className='w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-colors bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400'
               placeholder='请输入新密码'
               value={newPassword}
               onChange={(e) => setNewPassword(e.target.value)}
@@ -675,7 +666,7 @@ export const UserMenu: React.FC = () => {
             </label>
             <input
               type='password'
-              className='w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-colors bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400'
+              className='w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-colors bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400'
               placeholder='请再次输入新密码'
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
@@ -702,7 +693,7 @@ export const UserMenu: React.FC = () => {
           </button>
           <button
             onClick={handleSubmitChangePassword}
-            className='flex-1 px-4 py-2 text-sm font-medium text-white bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600 rounded-md transition-colors disabled:opacity-50 disabled:cursor-not-allowed'
+            className='flex-1 px-4 py-2 text-sm font-medium text-white bg-blue-400 hover:bg-blue-500 dark:bg-blue-500 dark:hover:bg-blue-400 rounded-md transition-colors disabled:opacity-50 disabled:cursor-not-allowed'
             disabled={passwordLoading || !newPassword || !confirmPassword}
           >
             {passwordLoading ? '修改中...' : '确认修改'}

@@ -116,7 +116,7 @@ export async function DELETE(request: NextRequest) {
         return NextResponse.json({ error: '用户已被封禁' }, { status: 401 });
       }
     }
-
+    
     const { searchParams } = new URL(request.url);
     const key = searchParams.get('key');
 
